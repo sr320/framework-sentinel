@@ -1,0 +1,61 @@
+# Rebuilds index.html from data/sentinel_log.json and deploys it to GitHub Pages.
+#
+# This is what makes the README's promise true: updating the log and pushing is
+# enough to refresh the site. The build validates the log first and fails the
+# run rather than publishing a page built from a malformed log.
+#
+# One-time setup in the repo: Settings -> Pages -> Source = "GitHub Actions".
+name: Build and deploy dashboard
+
+on:
+  push:
+    branches: [main]
+  # Staleness is computed at build time ("days since this question was last
+  # scored"), so a page that is never rebuilt slowly starts lying. Rebuild
+  # weekly even when nothing was pushed.
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let an in-flight deploy finish rather than cancelling it midway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # No dependencies beyond the standard library, so there is nothing to install.
+      - name: Validate sentinel_log.json
+        run: python3 scripts/validate_log.py
+
+      - name: Build index.html
+        run: python3 scripts/build_dashboard.py
+        env:
+          FRAMEWORK_SENTINEL_REPO: ${{ github.server_url }}/${{ github.repository }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

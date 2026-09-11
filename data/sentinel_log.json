@@ -1,0 +1,943 @@
+{
+ "sweeps": [
+  {
+   "sweep_date": "2026-08-05",
+   "window_start": "2026-07-06",
+   "window_end": "2026-08-05",
+   "sources_queried": [
+    "PubMed",
+    "Consensus",
+    "bioRxiv (partial: genomics, evolutionary biology, physiology categories, first ~8 days of window only)"
+   ],
+   "papers_screened": 47,
+   "papers_scored": 8,
+   "papers_method_watch": 1,
+   "papers_insufficient_info": 1,
+   "notes": "Initial build. bioRxiv category browse only reached ~2026-07-13 within the window before returns plateaued at 30 results/category; treat bioRxiv coverage this sweep as partial, not complete. Consensus's year/month date filter is month-granularity only, so 3 hits (Rumberger, Lamb, Kim Pham) carry publication dates of 2026-07-01 to 2026-07-03, a few days before the nominal window start of 2026-07-06 — kept in this sweep rather than held for a border-case rule that doesn't yet exist."
+  },
+  {
+   "sweep_date": "2026-08-12",
+   "window_start": "2026-07-12",
+   "window_end": "2026-08-11",
+   "sources_queried": [
+    "PubMed (2 split queries — the single query in sweep_keywords.md exceeds the 20-boolean-operator cap; wildcard 'predictive phenotyp*' dropped, wildcards are rejected by the tool)",
+    "Consensus (3 semantic queries, run sequentially with ~22s spacing)",
+    "bioRxiv (partial: genomics 2026-07-12..07-22, ecology + molecular biology 2026-07-12..07-16 only; the API returns 30 results/page regardless of limit and has no keyword search)",
+    "Scite (editorial-notice checks — DOI lookups succeeded; term/title searches intermittently returned 502s)"
+   ],
+   "papers_screened": 187,
+   "papers_scored": 7,
+   "papers_method_watch": 2,
+   "papers_insufficient_info": 1,
+   "notes": "Best week so far. Q1 (persistence and decay of marks) and Q5 (ncRNA functional validation) received their first hits ever, from independent directions. The most consequential hit is Durkin et al., the first description of epi-miRNAs and ceRNA networks in cnidarians — the closest anything has come to answering Q6 (channel integration), and it points to a HIERARCHICAL architecture with ncRNAs sitting upstream of the methylation machinery. IMPORTANT: Kathleen Durkin is a Roberts Lab member, so this is the lab's own preprint — it is in-scope and correctly scored, but it must not be read as independent external validation of the framework. Its bioRxiv DOI could not be resolved this sweep (Scite term search 502'd; bioRxiv category browse does not support keyword search) — resolve before citing. Q4 (F0-F1 methylation rebound) has now gone two consecutive sweeps with zero hits and has never been touched; Q2 was last touched 2026-08-05 and only by a cross-domain paper. Border cases: Janssens, Rosas-Anaya, and Nobre all carry publication dates of 2026-07-01, ~11 days before the nominal window start, because Consensus's date filter is month-granular. Kept, consistent with the precedent set in the 2026-08-05 sweep. The known Consensus revision-date artifact recurred: CpGPT (a methylation foundation model with 35 citations, i.e. clearly not new) surfaced as a 2026 result. Screened out.",
+   "papers_annotated_updates": 1
+  },
+  {
+   "sweep_date": "2026-09-01",
+   "window_start": "2026-08-02",
+   "window_end": "2026-09-01",
+   "sources_queried": [
+    "PubMed (2 split queries, sort=relevance — the single query in sweep_keywords.md still exceeds the 20-boolean-operator cap; wildcard 'predictive phenotyp*' remains dropped)",
+    "Consensus (3 semantic queries, run sequentially with ~23s spacing, year_min=2026/month_min=8)",
+    "bioRxiv (6 categories: genetics, genomics, molecular biology, evolutionary biology, ecology, physiology; date_from=2026-08-02, date_to=2026-09-01, limit=100 — but the API still returns only ~30 results/page regardless of limit and paginates no further this sweep, so coverage is partial: each category's 30 results only reached roughly 2026-08-02 through 2026-08-05/11 of the 30-day window, same limitation as prior sweeps. genetics, genomics, and evolutionary biology each timed out (30s) on first attempt and needed 1-2 retries before returning.",
+    "Scite — UNAVAILABLE this sweep. The Scite MCP server requires re-authorization (OAuth token expired) and this is a non-interactive scheduled run, so no editorial-notice/retraction/correction checks could be performed on any paper. Every entry and method-watch item added this sweep is flagged editorial_notice='Not checked — Scite unavailable'; all need a retroactive check next sweep before being treated as citation-ready."
+   ],
+   "papers_screened": 219,
+   "papers_scored": 4,
+   "papers_method_watch": 3,
+   "papers_insufficient_info": 1,
+   "notes": "Headline issue this sweep: Scite MCP access expired mid-pipeline (needs re-authorization by a human before next run), so the rubric's mandatory pre-dashboard retraction/correction check could not be performed on any of this week's additions — flagged individually and here so the gap is visible rather than silently skipped. Positive finding: the append-only log paid for itself — a PubMed hit this week (Thyrring et al., DOI 10.1016/j.ecoenv.2026.120601, Mytilus edulis lead/thermal cross-tolerance) was recognized as an exact-DOI duplicate of the paper already scored on Q8 in the 2026-08-05 sweep and correctly NOT re-added, despite carrying a fresh-looking PubMed record. New PubMed date-filter quirk discovered and logged in sweep_keywords.md tuning notes: two Elsevier Comparative Biochemistry and Physiology Part D papers (Zhou_2026_Tudor, pub_date 2026-03-30; Zhao_2026_lncRNA_growth, pub_date 2026-05-11) matched a pdat-filtered PubMed search for 2026-08-02..2026-09-01 despite print/epub dates months before the window — likely a print-issue-assignment reindexing quirk, analogous to the known Consensus revision-date artifact. Both are genuinely new to this log so were scored, with the date mismatch flagged in their captions. Best single hit this sweep: Vaidya et al. (bioRxiv, Tigriopus californicus copepod) is the first crustacean system to demonstrate the plasticity-frontloading trade-off (Q9) that has so far only been shown in corals and bivalves — fixed thermal tolerance and its plasticity trade off against each other across a latitudinal cline. Three strong method-watch items this week, all cross-domain: Pichon et al. (Biomphalaria glabrata) directly demonstrates that an induced epigenetic/metabolic state persists stably and causally primes a later phenotypic response — the exact Q1/Q3 sequence the framework needs tested; Zicola et al. (Arabidopsis) CRISPR-validates specific genes driving methylome change after novel-habitat colonization, the causal-perturbation standard Q3 rarely gets in marine systems; Gralak et al. (meSMiLE-seq) is a scalable in-vitro assay for whether methylation directly gates transcription-factor binding — a concrete, portable test of one causal link in Q3. Q4 (F0-F1 methylation rebound) went a third consecutive sweep with zero hits and remains untouched since the log began; Q6 (channel integration) and Q10 (held-out predictive performance) also had no hits this sweep. Madin et al. coral-restoration preprint carries into a third sweep unresolved (see insufficient_info) — recommend manual resolution next time rather than a fourth automated attempt."
+  },
+  {
+   "sweep_date": "2026-09-08",
+   "window_start": "2026-08-09",
+   "window_end": "2026-09-08",
+   "sources_queried": [
+    "PubMed (2 split queries, sort=relevance, pdat 2026/08/09:2026/09/08 — the single combined query in sweep_keywords.md still exceeds the 20-boolean-operator cap; wildcard 'predictive phenotyp*' remains dropped, tool rejects wildcards outright)",
+    "Consensus (3 semantic queries, run sequentially with ~23s spacing, year_min=2026/month_min=8)",
+    "bioRxiv (6 categories: genetics, genomics, molecular biology, evolutionary biology, ecology, physiology; date_from=2026-08-09, date_to=2026-09-08, limit=100 — API still returns only ~30 results/page regardless of limit and did not paginate further this sweep, so coverage skews toward the first few days of the 30-day window in each category, same limitation as every prior sweep)",
+    "Scite — UNAVAILABLE this sweep, second consecutive sweep. Unlike the 2026-09-01 outage (an auth/rate-limit error from a reachable server), this sweep the Scite MCP server/tool was not reachable or listed at all in this session — a broader connectivity gap, not just an expired token. No editorial-notice/retraction/correction checks could be performed on any paper added this sweep (all flagged 'Not checked — Scite unavailable'), and the four items flagged for retroactive check from 2026-09-01 (Zhou_2026_Tudor, Zhao_2026_lncRNA_growth, Ai_2026_Turritopsis, Vaidya_2026_copepod) remain unchecked for a second sweep."
+   ],
+   "papers_screened": 215,
+   "papers_scored": 7,
+   "papers_annotated_updates": 1,
+   "papers_method_watch": 4,
+   "papers_insufficient_info": 0,
+   "notes": "Scite has now been unreachable for two consecutive sweeps — this needs Steven's direct attention (check/reconnect the Scite MCP server) before the retraction/correction check can resume; every paper added in the last two sweeps (11 entries + 7 method-watch items total) is still uncertified against retractions/corrections/expressions of concern. Positive cross-validation: three PubMed hits this week (10.1016/j.cbd.2026.101824, 10.1016/j.cbd.2026.101864, 10.1007/s10126-026-10697-0) were recognized as exact-DOI duplicates of Zhou_2026_Tudor, Zhao_2026_lncRNA_growth, and Ai_2026_Turritopsis (all scored 2026-09-01) and correctly not re-added. Best hit this sweep: Baird et al. (bioRxiv, Roberts Lab's own Pacific oyster parental-immune-priming preprint) gives a directly quantified demonstration of the Q8 mismatch/tipping-point phenomenon — priming benefit at 40C (35% lower mortality) inverts to a cost at 42C (17% higher mortality) — alongside Q2 (parent-to-offspring transmission of an immune-stress-induced phenotype); flagged prominently as in-house (not independent) evidence, and as resurfacing via a bioRxiv date/category-browse artifact despite being posted ~9 months before this window. Second-best: Buso et al. (coral, cross-confirmed via bioRxiv AND all three Consensus queries) directly disentangles genotype-associated from genotype-independent DNA methylation variation in two coral species across the South Pacific, bearing on Q3's causal-direction question (Confirms) and Q9 (Extends). A new Roberts Lab paper, Ashey et al. (Environmental Epigenetics, published), characterizes ncRNA machinery across three coral genera from the same Mo'orea system as the still-DOI-unresolved Durkin_2026 (2026-08-12) — logged as a distinct, related-but-not-confirmed-identical entry, and Durkin_2026's own DOI remains unresolved after a second recheck (annotated update added, not a re-score). Two strong hits (Yuan et al., sponge chromatin priming; Gonzalez-Rajal et al., siphonophore methylation/chromatin decoupling) could not get a DOI resolved this sweep via PubMed or bioRxiv title lookup — both sourced only through Consensus, which does not surface DOIs in its result cards; flagged for DOI resolution before citing. Four new cross-domain method-watch items, the strongest being a 14-year Norway spruce common-garden study (Yakovlev et al.) showing stable, partially embryo-to-adult-transmitted DNA methylation differences — one of the longest persistence datasets found in any taxon so far, directly relevant to Q1/Q2/Q4 despite being a plant. Q4 (F0-F1 methylation rebound) had zero hits again this sweep and has now had zero hits across all four sweeps since the log began — this is the strongest signal yet that Q4 needs a lab experiment rather than more literature sweeps. Per the 2026-09-01 sweep's own recommendation, the Madin et al. coral-restoration insufficient-info item was NOT re-attempted a fourth time via automated search this sweep; it still needs manual (non-MCP) resolution."
+  }
+ ],
+ "entries": [
+  {
+   "id": "Rumberger_2026",
+   "doi": "10.1111/mec.70457",
+   "title": "Genomic Offsets Predict Survival With Low Accuracy in a Marine Common Garden",
+   "authors": "Rumberger, Eppley, Bajaj et al.",
+   "journal": "Molecular Ecology",
+   "year": 2026,
+   "pub_date": "2026-07-01",
+   "species": "Crassostrea virginica",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q10",
+     "verdict": "Confirms",
+     "rationale": "A genomic-offset method (molecular state trained on one population -> predicted fitness in another) validated against real common-garden survival/growth in oysters at two Chesapeake Bay sites. Prediction accuracy was inadequate for real-world use, and offset magnitude barely differed between sites despite a ~50% survival gap between them. This is close to the exact held-out predictive test the framework says has never been demonstrated in a marine system — and it's a negative result, which is exactly the honest evidence Q10 needs."
+    }
+   ],
+   "caveat": "Genomic offset uses standing genetic variation, not epigenetic state — a related but distinct molecular substrate from the framework's primary five channels. Still counts as direct evidence on the general 'can molecular state predict fitness out-of-sample' question.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite full abstract/citations",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Fabela_2026",
+   "doi": "10.1242/jeb.252105",
+   "title": "Food dependent activation of one carbon metabolism during heat shock in Mytilus californianus",
+   "authors": "Fabela, May, Tomanek",
+   "journal": "Journal of Experimental Biology",
+   "year": 2026,
+   "pub_date": "2026-07-14",
+   "species": "Mytilus californianus",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q7",
+     "verdict": "Confirms",
+     "rationale": "Direct empirical test of the framework's own claim (Section 3): 'SAM/SAH stoichiometry constrains methylation capacity; energy availability constrains how much regulatory plasticity is affordable.' Low-food, low-temperature-acclimated mussels mounted a LARGER heat-shock response, funneling glycolytic output into one-carbon metabolism (folate/methionine cycles) that feeds SAM-dependent methyltransferases and histone modification — a proteomic-level demonstration of the metabolism-to-epigenetics link the framework proposes, with food ration as the energy-availability lever."
+    }
+   ],
+   "caveat": "Proteomic, not methylome, evidence — infers a link to methylation capacity via one-carbon metabolism pathway proteins rather than measuring 5mC directly. Single species, single stressor pairing (temperature x food).",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "PubMed abstract + Scite full abstract",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Thyrring_2026",
+   "doi": "10.1016/j.ecoenv.2026.120601",
+   "title": "Lead exposure modulates thermal vulnerability in Mytilus edulis under multi-stressor conditions",
+   "authors": "Thyrring, Freitas, Clark",
+   "journal": "Ecotoxicology and Environmental Safety",
+   "year": 2026,
+   "pub_date": "2026-08-03",
+   "species": "Mytilus edulis",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q8",
+     "verdict": "Complicates",
+     "rationale": "Shows a protective cross-tolerance / transcriptional-frontloading effect (Pb pre-exposure attenuating heat-induced mortality) that is itself modulated by a THIRD stressor: reduced salinity weakened the protective effect. A real multi-stressor demonstration that a preparedness/frontloading state's adaptive value is context-dependent, not fixed — directly relevant to when anticipatory states tip from protective to inadequate."
+    }
+   ],
+   "caveat": "Frontloading here is contamination-induced cross-tolerance, not the classic environmental-memory framing (parental priming, developmental conditioning) — still squarely inside mechanistic pathway 3 (reaction norms / frontloading) from the framework's Section 2.",
+   "editorial_notice": "Not yet indexed in Scite (published 2026-08-03, too recent) — recheck next sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract only",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Xue_2026",
+   "doi": "10.3390/antiox15070862",
+   "title": "Gene- and Isoform-Level Responses to Extreme Acidic pH Stress in an Emerging Marine Invertebrate Model Organism Litoditis marina",
+   "authors": "Xue, Zhang, Yang et al.",
+   "journal": "Antioxidants",
+   "year": 2026,
+   "pub_date": "2026-07-09",
+   "species": "Litoditis marina (marine nematode)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q6",
+     "verdict": "Complicates",
+     "rationale": "Finds 327 differential alternative-splicing events and 1512 transcripts with altered isoform usage under acidic pH stress, using long-read sequencing to resolve post-transcriptional regulation the framework's five-channel model (gbM, ncRNA, expression baselines, chromatin, genome coupling) doesn't explicitly name. If post-transcriptional/splicing regulation turns out to carry independent stress-response information, channel integration (Q6) may need a sixth channel, not just resolution among the existing five."
+    }
+   ],
+   "caveat": "A marine nematode, not one of the framework's core bivalve/coral taxa, but explicitly framed by the authors as an 'emerging marine invertebrate model organism' — in scope. Single time point; no methylation or ncRNA data in the same animals to test integration directly.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite full abstract",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Lamb_2026",
+   "doi": "10.1126/sciadv.aeb5575",
+   "title": "Assisted evolution of corals and their symbionts enhances recruit heat tolerance but with complex outcomes",
+   "authors": "Lamb, McCutchan, Morgans et al.",
+   "journal": "Science Advances",
+   "year": 2026,
+   "pub_date": "2026-07-03",
+   "species": "Acropora spathulata (+ Symbiodiniaceae)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q8",
+     "verdict": "Complicates",
+     "rationale": "Selective breeding for heat tolerance enhanced recruit survival/growth at one reef (Davies) but not another (Moore Reef) under identical elevated-temperature exposure, and combining selective breeding with heat-evolved symbionts sometimes produced additive benefit, no enhancement, or one intervention diminishing the other. A real-world, site-specific demonstration of the framework's own caution (Section 6): 'engineered conditioning could induce mismatch if downstream environments diverge from the conditioning environment.'"
+    }
+   ],
+   "caveat": "This is selective breeding (standing genetic variation across generations) plus symbiont experimental evolution, not epigenetic priming within a generation — relevant to Section 6's aquaculture/restoration application program more than to the core epigenetic mechanism, but squarely inside the framework's stated caution about generalizing interventions across sites.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite full abstract/citations",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "KimPham_2026",
+   "doi": "10.1016/j.marpolbul.2026.119639",
+   "title": "DNA methylation as a biomarker of salinity and contaminant stress in mangrove crab Ucides occidentalis",
+   "authors": "Pham, De Cock, Ho et al.",
+   "journal": "Marine Pollution Bulletin",
+   "year": 2026,
+   "pub_date": "2026-07-01",
+   "species": "Ucides occidentalis (mangrove crab)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q9",
+     "verdict": "Extends",
+     "rationale": "Global 5-mC methylation tracked salinity and metal/pesticide contamination across 14 field sites in a crustacean — a taxon barely represented in the framework's mostly bivalve/coral anchor set. Extends the gbM-as-environmental-signal pattern to a new taxon and a field (not lab) setting, and to salinity + multi-pollutant stress rather than temperature/pH. Does not itself resolve cross-taxa generality (correlational, single time point) but adds a genuine new data point."
+    }
+   ],
+   "caveat": "Global 5-mC, not gene-body-specific or locus-resolved methylation — coarser resolution than the framework's gbM claims. Correlational field study, no experimental manipulation.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract (full text is paywalled, $41.95 via Scite access link)",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Teichman_2024_resurfaced2026",
+   "doi": "10.1101/2024.12.02.626416",
+   "title": "Perception of Temperature Even in the Absence of Actual Change is Sufficient to Drive Transgenerational Epigenetic Inheritance",
+   "authors": "Teichman, Sela, Ewe et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2024,
+   "pub_date": "2024-12-02 (original); resurfaced by Consensus's month-filtered search as if new in 2026 — see caveat",
+   "species": "Caenorhabditis elegans",
+   "cross_domain": true,
+   "questions": [
+    {
+     "q": "Q2",
+     "verdict": "Confirms",
+     "rationale": "Directly addresses HOW parental experience reaches the germline — the framework's exact Q2 wording. Shows thermosensory neurons (not the germline itself) perceiving temperature and relaying a signal via identified secreted factors to induce transgenerational RNAi/small-RNA changes, with a mathematical model whose predictions (blocking sensory input dampens inheritance) were experimentally validated. This is a full causal-perturbation demonstration of a soma-to-germline transmission mechanism — exactly the kind of study the framework says marine invertebrate work still lacks (Q3's dCas9-DNMT/TET, antisense-oligo class of experiment)."
+    }
+   ],
+   "caveat": "CROSS-DOMAIN: C. elegans is a terrestrial/soil nematode, not marine, and outside the framework's taxonomic scope — flagged per RUBRIC.md rather than scored as marine-invertebrate data. Included anyway because the mechanism (neuron-to-germline secreted signaling) and the experimental logic (perturb-and-predict) are directly transferable methodology for testing Q2/Q3 in marine systems. DATE FLAG: Scite records this preprint's original post date as 2024-12-02 with 8 citing publications already — it is NOT a new paper. It surfaced in this sweep only because Consensus's date filter appears to key off a recent revised version rather than the original posting. Do not report this as new in any lab-facing summary; kept here as a live methodological reference, and the sweep script should be tightened to avoid re-surfacing revised-but-old preprints (see sweep_keywords.md tuning notes).",
+   "editorial_notice": "None found (4 Smart Citations, all mentioning, 0 contrasting)",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite full abstract/citations",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Serdo_2026",
+   "doi": "10.7717/peerj.21374",
+   "title": "A systematic review of locust phase polyphenism: from proximate mechanisms to ecology and management",
+   "authors": "Serdo, Németh",
+   "journal": "PeerJ",
+   "year": 2026,
+   "pub_date": "2026-07-07",
+   "species": "Schistocerca gregaria, Locusta migratoria (locusts)",
+   "cross_domain": true,
+   "questions": [
+    {
+     "q": "Q3",
+     "verdict": "Confirms",
+     "rationale": "A 400-study systematic review outside marine biology entirely, in a completely different phenotypic-plasticity system (locust phase polyphenism), independently arrives at the same two structural gaps the framework names for marine invertebrates: (1) causal validation of molecular regulators is largely missing under ecologically relevant conditions, and (2) mechanisms diverge across taxa rather than generalizing ('direct species comparisons reveal fundamental divergence rather than conservation, challenging assumptions of universal mechanisms'). This is field-external validation that Q3 and Q9 are real, general problems in plasticity research — not artifacts of how this framework happens to be scoped."
+    },
+    {
+     "q": "Q9",
+     "verdict": "Confirms",
+     "rationale": "Same review, same caveat: the taxonomic-narrowness finding (93.8% of locust studies concentrated on 2 of many locust species) is a structural parallel to the framework's own concern about cross-taxa generality resting on a thin anchor set (mostly bivalves and corals)."
+    }
+   ],
+   "caveat": "CROSS-DOMAIN: insects, not marine invertebrates. Scored here as meta-level validation of the framework's own unresolved questions rather than as direct marine-invertebrate evidence — flagged per RUBRIC.md. Does not supply new marine data.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite full abstract",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Durkin_2026",
+   "doi": null,
+   "title": "Cross-talk among miRNAs, lncRNAs, and DNA methylation in three coral species reveal conserved epigenetic regulatory architecture",
+   "authors": "Durkin, K. M. et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2026 (exact posting date not captured — DOI unresolved)",
+   "species": "Acropora pulchra, Porites evermanni, Pocillopora tuahiniensis",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q6",
+     "verdict": "Confirms",
+     "rationale": "The strongest hit of this sweep. Matched RNA-seq + small RNA-seq + whole-genome bisulfite sequencing across three reef-building corals gives the first description of epi-miRNAs and ceRNA networks in any cnidarian. miRNAs putatively target transcripts encoding DNA methylation regulators (TET3, MBD, PRDM14), histone-modifying machinery, and the miRNA pathway itself (AGO, TNRC6), while candidate lncRNA ceRNAs buffer those miRNAs. That is a concrete, testable HIERARCHICAL answer to Q6 — ncRNAs sitting upstream of the methylation machinery rather than running as an independent parallel channel — in exactly the taxa the framework anchors on. The framework has held channel hierarchy as plausible-but-untested; this is the first direct architecture-level evidence for it."
+    },
+    {
+     "q": "Q5",
+     "verdict": "Complicates",
+     "rationale": "Q5 asks whether inferred CIS-regulatory effects of lncRNAs on NEIGHBORING genes are real and at what magnitude. The lncRNA action recovered here is predominantly TRANS — ceRNA sponging of miRNAs that target epigenetic machinery — not cis-neighbor regulation. If the dominant coral lncRNA mode is trans-acting miRNA buffering, then the framework's cis-neighbor framing of Q5 may be aimed at the wrong mechanism, and magnitude estimates built on neighbor co-expression would be measuring the wrong thing."
+    },
+    {
+     "q": "Q9",
+     "verdict": "Complicates",
+     "rationale": "Regulatory interactions were recovered across three evolutionarily divergent corals DESPITE few orthologous miRNAs or lncRNAs — i.e. the architecture generalizes while the molecules do not. This is a genuinely awkward result for a simple yes/no reading of cross-taxa generality, and it sits in direct tension with Serdo & Nemeth (scored 2026-08-05), whose locust review concluded that 'direct species comparisons reveal fundamental divergence rather than conservation.' Both cannot be the whole story; the reconciliation is probably that conservation lives at the level of architecture, not components — which is a substantive revision to how Q9 should be posed."
+    }
+   ],
+   "caveat": "PREPRINT — not peer reviewed. Regulatory interactions are computationally predicted (miRNA target prediction plus co-expression), not functionally validated, so the hierarchy is an architecture hypothesis rather than a demonstrated causal chain. LAB-AUTHORSHIP FLAG: Kathleen Durkin is a Roberts Lab member — this is the lab's own preprint and must not be presented as independent external corroboration of the lab's framework. DOI NOT RESOLVED this sweep: Scite term search returned 502s and the bioRxiv MCP tool has no keyword search, so the record carries no DOI; resolve it before this is cited anywhere.",
+   "editorial_notice": "Preprint — not indexed in Scite; DOI unresolved this sweep, so no notice check was possible. Recheck next sweep.",
+   "editorial_status": "unavailable",
+   "evidence_source": "Consensus abstract (full abstract returned)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Janssens_2026",
+   "doi": "10.1002/lno.70452",
+   "title": "Multigenerational effects of ocean warming on copepod physiology, nutritional value, and epigenetics: Evidence for reversible and adaptive stress responses",
+   "authors": "Janssens, De Troch, Vafeiadou",
+   "journal": "Limnology and Oceanography",
+   "year": 2026,
+   "pub_date": "2026-07-01",
+   "species": "Nitocra spinipes (harpacticoid copepod)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q1",
+     "verdict": "Confirms",
+     "rationale": "Q1's FIRST hit since the dashboard was built. Five generations of tracked global DNA methylation under gradual warming, acute heat stress, and stress removal, in a marine invertebrate. Global methylation behaved as a REVERSIBLE marker of thermal stress, and life-history traits showed recovery once the stressor was lifted — direct empirical evidence that induced states in this system sit on the wash-out end of Q1's wash-out / persist / assimilate spectrum, on a timescale of generations rather than indefinitely."
+    },
+    {
+     "q": "Q8",
+     "verdict": "Confirms",
+     "rationale": "An unusually clean rate-of-change experiment, which is exactly what Q8 asks for. Gradual temperature increase permitted partial adaptive responses across generations; acute heat stress of comparable magnitude produced reproductive collapse. Same endpoint, different rate, opposite outcome — direct evidence that the adaptive-to-maladaptive tipping point is governed by the RATE of environmental change and not only its magnitude."
+    },
+    {
+     "q": "Q9",
+     "verdict": "Extends",
+     "rationale": "Applies the established methylation-as-environmental-signal pattern to a copepod, a crustacean lineage essentially absent from the framework's mostly bivalve/coral anchor set (and distinct from the mangrove crab added on 2026-08-05). A new taxonomic data point rather than a resolution of generality."
+    }
+   ],
+   "caveat": "GLOBAL 5-mC only — no locus resolution and no gene-body specificity, so 'reversible' is established at the whole-genome-average level and could mask persistent locus-specific marks. Meiobenthic copepod, not one of the framework's core taxa. Reproductive endpoints, not the framework's five mechanistic channels directly. Publication date 2026-07-01 falls ~11 days before the nominal window start (Consensus month-granular date filter) — kept per the 2026-08-05 precedent.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite record (full abstract, no editorial notices)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "GrauBove_2026",
+   "doi": "10.64898/2026.07.18.739195",
+   "title": "Cell-resolved transcriptional responses during heat-induced coral bleaching and recovery",
+   "authors": "Grau-Bove, Montes-Espuna, Ksiezopolska et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2026-07-19",
+   "species": "Stylophora pistillata",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q1",
+     "verdict": "Confirms",
+     "rationale": "Q1's second hit this sweep, and the first with an explicit recovery arm in a coral. A temporal single-cell atlas of 20,000 cells across seven days at 32C and 45 days of recovery shows a STAGED trajectory — early oxidative-stress, detoxification, and proteostasis programmes giving way to mitochondrial, cytoskeletal, and vesicular remodelling — with only PARTIAL restoration of symbiont abundance and photosynthetic efficiency after 45 days. Direct evidence that the induced state neither fully washes out nor simply persists on a ~6-week timescale, which is precisely the shape of answer Q1 is after."
+    },
+    {
+     "q": "Q3",
+     "verdict": "Complicates",
+     "rationale": "A serious methodological complication for causal-direction work. Different coral cell types moved in OPPOSITE directions under the same stress: epidermal cells activated tissue-renewal programmes, calicoblasts REPRESSED calcification genes, and alga-hosting cells progressively lost transport, lipid-biosynthesis, and nutrient-exchange functions. Any bulk-tissue observation that methylation, transcription, and phenotype co-vary may therefore reflect shifting cell-type composition and cell-type-specific programmes rather than within-cell causal coupling. Bulk methylome/transcriptome designs — the standard in this literature, including the framework's own anchor studies — cannot distinguish the two."
+    }
+   ],
+   "caveat": "PREPRINT — not peer reviewed. Transcriptional evidence only: no methylation, no ncRNA, no F1, so this speaks to the persistence of EXPRESSION states rather than of epigenetic marks per se. Single species, single thermal regime, one recovery timepoint.",
+   "editorial_notice": "Preprint — not indexed in Scite; no editorial notices exist for bioRxiv preprints. Recheck if it reaches a journal.",
+   "editorial_status": "not_applicable",
+   "evidence_source": "bioRxiv get_preprint (full abstract)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "RosasAnaya_2026",
+   "doi": "10.1093/jcbiol/ruag042",
+   "title": "Crustacean epigenetic responses to chemical and environmental stress: a review",
+   "authors": "Rosas-Anaya & Yepiz-Plascencia",
+   "journal": "Journal of Crustacean Biology",
+   "year": 2026,
+   "pub_date": "2026-07-01",
+   "species": "12 crustacean taxa (comparative genomic survey)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q3",
+     "verdict": "Confirms",
+     "rationale": "An independent review of an in-scope invertebrate group reaches the framework's own diagnosis almost word for word: existing knowledge 'relies predominantly on associative and descriptive correlations,' and the stated experimental priority is 'locus-specific functional perturbations and rigorously controlled multigenerational bioassays to help distinguish transient physiological acclimation from true transgenerational inheritance.' That is Q3 (causal direction), named as the field's binding constraint by authors with no stake in this framework."
+    },
+    {
+     "q": "Q6",
+     "verdict": "Complicates",
+     "rationale": "The review organizes crustacean epigenetics into FOUR regulatory layers — 5mC, RNA N6-methyladenosine (m6A), histone/chromatin dynamics, and ncRNAs — and proposes an interaction framework linking them to stress phenotypes. m6A is an epitranscriptomic channel the framework's five-channel model does not name. This is the second sweep running in which a candidate sixth channel has surfaced (Xue et al., scored 2026-08-05, made the same point for alternative splicing). Two independent pointers at post-transcriptional regulation suggest Q6 may need to be reframed as 'how many channels are there' before it can be asked 'how do the five integrate.'"
+    }
+   ],
+   "caveat": "A REVIEW, not new data — its evidential weight is as a field-level diagnosis, not as an observation. Crustaceans are in the framework's stated taxonomic scope, so this is not cross-domain, but it is also not bivalve or coral. Its biomarker section separately reinforces the framework's Q10 position (predictive utility 'will depend on high-resolution multi-omics integration and robust field validation'), though that is not scored here to avoid over-weighting a single review.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + Scite record (full abstract, no editorial notices)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Edgar_2026",
+   "doi": "10.64898/2026.07.13.738316",
+   "title": "Behavioral metabolic suppression confounds thermal performance estimates and climate vulnerability assessments in a marine ectotherm",
+   "authors": "Edgar, Penfold, Martinez, Wells",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2026-07-14",
+   "species": "Urticina sp. (cold-water intertidal sea anemone)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q7",
+     "verdict": "Complicates",
+     "rationale": "Q7's first hit, and it is a measurement-validity problem rather than a result. Q7 asks for the metabolic burden of maintaining high-turnover regulatory states — a quantity almost always estimated from whole-organism respirometry. In this cnidarian a fully expanded animal respired about TWICE as fast as a fully closed one at the same temperature, and expansion state collapsed above 20C, so measured oxygen consumption confounds behavioural posture with physiological rate. A Bayesian multiplicative model separating the two showed physiology continued tracking temperature while behaviour declined. Any energetic-cost-of-plasticity estimate in a sessile cnidarian that does not record behavioural state alongside O2 consumption is measuring an unknown mixture of the two. Relatedly, standard thermal-performance-curve fits extrapolated a thermal maximum of ~74C (symmetric Gaussian) or 45.9C (asymmetric) against an observed lethal temperature of 30C — a striking reminder of how badly fitted physiological curves extrapolate out of sample."
+    }
+   ],
+   "caveat": "PREPRINT — not peer reviewed. An undescribed anemone species, n = 18 individuals across 126 respirometry trials. No epigenetic or molecular measurements at all — the relevance is entirely to how the DENOMINATOR in any cost-of-plasticity calculation is measured. The thermal-curve extrapolation failure is suggestive for Q10 but was not scored there, since Q10 concerns molecular signatures rather than fitted physiological curves.",
+   "editorial_notice": "Preprint — not indexed in Scite; no editorial notices exist for bioRxiv preprints.",
+   "editorial_status": "not_applicable",
+   "evidence_source": "bioRxiv get_preprint (full abstract)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Nobre_2026",
+   "doi": "10.1111/gcb.70992",
+   "title": "Predicting Coral Offspring Survival From Reef Thermal Histories in Ningaloo World Heritage Reef",
+   "authors": "Baptista Nobre, Maroni, Jones, Quigley",
+   "journal": "Global Change Biology",
+   "year": 2026,
+   "pub_date": "2026-07-01",
+   "species": "Acropora spp. (51 selectively bred families)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q10",
+     "verdict": "Complicates",
+     "rationale": "A second out-of-sample forecasting attempt in a marine invertebrate, landing in the same place as Rumberger et al. (scored 2026-08-05): boosted regression trees predicting larval survival from 20 satellite-derived SST predictors reached an AUC of only 0.67. The complication for Q10 is that the predictors here are ENVIRONMENTAL history, not molecular state — so this sets the baseline any molecular signature has to beat, and shows that baseline is currently weak. It also reframes the question usefully: if reef thermal history alone forecasts offspring survival this poorly, the interesting test is not whether molecular signatures predict, but whether they add anything over the environmental record that is already free to obtain."
+    }
+   ],
+   "caveat": "Predictors are satellite SST, not molecular — this is not the held-out MOLECULAR test the framework says is missing, and is scored as a boundary condition on Q10 rather than as evidence about molecular signatures. Thermal tolerance was assayed acutely (35.5C) in larvae from selectively bred families, so heritable variation here is genetic rather than epigenetic. Publication date 2026-07-01 precedes the nominal window start (Consensus month-granular filter) — kept per the 2026-08-05 precedent.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "Consensus abstract + PubMed metadata + Scite record (no editorial notices)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Yan_2026",
+   "doi": "10.1016/j.cbd.2026.101953",
+   "title": "Unveiling the molecular basis of gonadal development: Multi-omics uncovers sex-related genes and steroid pathways in Sinonovacula constricta",
+   "authors": "Yan, You, Shi, Lin, Dong, Yao",
+   "journal": "Comparative Biochemistry and Physiology Part D: Genomics & Proteomics",
+   "year": 2026,
+   "pub_date": "2026-07-27",
+   "species": "Sinonovacula constricta (razor clam)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q5",
+     "verdict": "Extends",
+     "rationale": "Reports a regulatory network of 39 lncRNA-mRNA pairs in a bivalve, alongside 2795 differentially expressed lncRNAs, with the paired partners including Tektin-4, Ropporin-1, Histone H1, and FoxN4. This extends the now-familiar lncRNA-target-inference approach to another bivalve and to a developmental rather than environmental-stress context. It does NOT advance Q5's actual question — every pair is inferred from co-expression, with no perturbation and no magnitude estimate — so its value is as one more entry in the growing pile of unvalidated inference that makes Q5 urgent, not as progress on it."
+    }
+   ],
+   "caveat": "Gonadal development and sexual differentiation, not environmental memory — the lncRNA network is the only point of contact with the framework. Purely correlational: co-expression pairing with no functional validation, which is exactly the gap Q5 names. Histone H1 and nucleosome-assembly enrichment appear in the integrated analysis but are not pursued as a chromatin-channel result.",
+   "editorial_notice": "None found",
+   "editorial_status": "checked",
+   "evidence_source": "PubMed abstract + Scite record (no editorial notices)",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Thyrring_2026_update",
+   "supersedes": "Thyrring_2026",
+   "doi": "10.1016/j.ecoenv.2026.120601",
+   "title": "Lead exposure modulates thermal vulnerability in Mytilus edulis under multi-stressor conditions [ANNOTATED UPDATE to the 2026-08-05 entry]",
+   "authors": "Thyrring, Freitas, Clark",
+   "journal": "Ecotoxicology and Environmental Safety",
+   "year": 2026,
+   "pub_date": "2026-08-03",
+   "species": "Mytilus edulis",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q8",
+     "verdict": "Complicates",
+     "rationale": "ANNOTATED UPDATE, not a re-score. The original 2026-08-05 entry stands unchanged; its Q8 Complicates verdict and rationale are unaltered. Two things are now resolved that were open then. (1) The deferred editorial-notice check is complete: the paper is now indexed in Scite and carries NO retraction, correction, or expression of concern. (2) The original entry was scored from the PubMed abstract alone; the full abstract now confirms the mechanistic detail behind the verdict — transcriptomic analyses show upregulation of detoxification-related cellular stress-response pathways 'consistent with transcriptional front-loading mechanisms underpinning cross-tolerance,' while overall gene expression responses were modest. The frontloading interpretation the original entry inferred is the authors' own."
+    }
+   ],
+   "caveat": "This is a bookkeeping entry created to close out the 'Not yet indexed in Scite — recheck next sweep' flag on the original Thyrring_2026 record without editing that record, per the append-only rule in RUBRIC.md. It intentionally duplicates the Q8 verdict, so Q8 will show two cards for the same paper on the dashboard; that is the honest cost of append-only and is preferable to a silent edit.",
+   "editorial_notice": "None found (checked 2026-08-12; the paper is now indexed in Scite, resolving the deferred check from 2026-08-05)",
+   "editorial_status": "checked",
+   "evidence_source": "Scite record (full abstract, no editorial notices) + PubMed abstract",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Zhou_2026_Tudor",
+   "doi": "10.1016/j.cbd.2026.101824",
+   "title": "The Tudor gene family in the Pacific oyster reveals conserved gonadal enrichment of germline-associated factors",
+   "authors": "Zhou, Zhao, Yu, Li",
+   "journal": "Comparative Biochemistry and Physiology Part D: Genomics and Proteomics",
+   "year": 2026,
+   "pub_date": "2026-03-30",
+   "species": "Crassostrea gigas",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q2",
+     "verdict": "Extends",
+     "rationale": "Characterizes the Tudor domain-containing protein family (26 genes) in Crassostrea gigas; Tudor domains are established epigenetic readers of methylated arginine/lysine, widely implicated in germ cell development across metazoans. Nine genes show pronounced gonad-biased expression (particularly female gonads), with CgPhf1 showing marked stage-specific upregulation — exactly the kind of germline-restricted epigenetic-reader machinery a soma-to-germline transmission channel would require. Extends the known germline-associated-epigenetic-reader concept (established in vertebrates/insects) to a non-model marine invertebrate for the first time."
+    }
+   ],
+   "caveat": "No functional validation (knockdown/knockout) of any Tudor gene's role in transmitting soma-derived epigenetic information to gametes — this is expression/phylogenetic characterization only, not a causal test of the transmission pathway Q2 asks about.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep (MCP server requires re-authorization); recheck next sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract",
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "Zhao_2026_lncRNA_growth",
+   "doi": "10.1016/j.cbd.2026.101864",
+   "title": "Investigating the influence of lncRNA-mRNA interactions on Mytilus coruscus growth using transcriptome data",
+   "authors": "Zhao, Dong",
+   "journal": "Comparative Biochemistry and Physiology Part D: Genomics and Proteomics",
+   "year": 2026,
+   "pub_date": "2026-05-11",
+   "species": "Mytilus coruscus",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q5",
+     "verdict": "Extends",
+     "rationale": "Comparative transcriptomics of fast- vs slow-growing M. coruscus identifies 91 differentially expressed lncRNAs and predicts lncRNA-mRNA regulatory pairs (e.g. MSTRG.10759.1 predicted to regulate BVES/RASV/ST13-HIP; PLOD1 and ANK highlighted as core targets) linked to growth signaling (TGF-beta, VEGF, Wnt, mTOR). Extends the inferred-cis/trans-regulatory-lncRNA approach Q5 questions to a new phenotype (growth) and species, but the regulatory calls rest entirely on expression correlation and target-prediction software."
+    }
+   ],
+   "caveat": "Purely correlative/predicted regulatory network — exactly the category of unvalidated inference Q5 asks whether to trust. No knockdown, reporter assay, or perturbation of any candidate lncRNA. Does not move Q5 toward resolution, just adds another unvalidated example.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep (MCP server requires re-authorization); recheck next sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract",
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "Ai_2026_Turritopsis",
+   "doi": "10.1007/s10126-026-10697-0",
+   "title": "Correlation of Long Non-Coding RNAs and Gene Expression in Response to Reverse Development of Turritopsis dohrnii",
+   "authors": "Ai, He, Wang",
+   "journal": "Marine Biotechnology",
+   "year": 2026,
+   "pub_date": "2026-08-24",
+   "species": "Turritopsis dohrnii",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q5",
+     "verdict": "Extends",
+     "rationale": "Genome-wide lncRNA survey (8,805 candidates, 82 RNA-seq samples) in the immortal jellyfish during reverse development (medusa-to-polyp life-cycle reversal), identifying 64 lncRNA-mRNA pairs with putative cis/trans-regulatory relationships to DNA-repair, cell-cycle and apoptosis genes (Tspan4, Aifm2, Wwox, p53/cAMP pathway members). Extends the same inferred-cis-regulatory-lncRNA approach central to Q5 to a novel cnidarian system and a striking biological phenomenon, again without functional validation of any predicted pair."
+    }
+   ],
+   "caveat": "Reverse development (transdifferentiation-driven life-cycle reversal) is a distinct phenomenon from the framework's primary target of environmentally-induced plasticity/memory — relevant to Q5 as an ncRNA-validation case, not as direct evidence on persistence of environmentally-induced marks (Q1). No functional validation of any lncRNA-mRNA pair.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep (MCP server requires re-authorization); recheck next sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract",
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "Vaidya_2026_copepod",
+   "doi": "10.64898/2026.07.29.741598",
+   "title": "Distinct molecular mechanisms shape thermal tolerance and its plasticity in a splash pool copepod",
+   "authors": "Vaidya, Neylan, Shombaowo, Faircloth, Dassanayake, Kelly",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2026-08-04",
+   "species": "Tigriopus californicus",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q9",
+     "verdict": "Extends",
+     "rationale": "Comparative transcriptomics across five T. californicus populations spanning 12° of latitude finds a direct trade-off between fixed heat tolerance and its plasticity: southern (higher-baseline-tolerance) populations maintain elevated constitutive peptidase expression but show LOWER plasticity, while northern populations show higher plasticity of chitin/ECM-gene expression but lower fixed tolerance. This is precisely the plasticity-frontloading trade-off pattern the framework proposes (Section 2), now demonstrated in a crustacean — a taxon outside the coral/bivalve systems where it has previously been shown. Extends the established trade-off pattern to a new taxon without itself resolving whether the trade-off is universal."
+    }
+   ],
+   "caveat": "The copepod thermal tolerance/plasticity trade-off operates at the level of gene expression baselines and plasticity (framework channel 3: reaction norms), not methylation directly — mechanism shown is transcriptomic, not epigenomic. Preprint, not yet peer reviewed.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep (MCP server requires re-authorization); recheck next sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "bioRxiv abstract",
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "Buso_2026_coral_epigenetic_decoupling",
+   "doi": "10.64898/2026.08.04.742665",
+   "title": "Decoupling epigenetic variation from genetic variation reveals complementary dimensions of coral eco-evolutionary dynamics",
+   "authors": "Buso, Gouspy, Rodolfo-Metalpa, de Lorgeril, Bonito, Mitta, Romatif, Pouzadoux, Foure, Fellous, Auffret, Clerissi, Toulza, Valdivieso, Vidal-Dupiol, Rey",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2026-08-09",
+   "species": "Pocillopora acuta; Acropora hyacinthus",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q3",
+     "verdict": "Confirms",
+     "rationale": "Genome-wide Enzyme-Methyl-seq across two coral species/three South Pacific archipelagos explicitly disentangles genetically-associated from genetically-independent DNA methylation variation. The genetically-independent epigenetic component shows its own, ecologically-structured spatial pattern distinct from (and finer-scaled than) the genetic/isolation-by-distance pattern — direct evidence that epigenetic variation is not simply a passive readout of genotype, bearing directly on the framework's causal-direction question."
+    },
+    {
+     "q": "Q9",
+     "verdict": "Extends",
+     "rationale": "Two coral species from distinct functional groups (Pocillopora, Acropora) across New Caledonia/Fiji/French Polynesia show the same genotype-independent, environmentally-structured epigenetic pattern, extending the pattern across coral taxa and a wide biogeographic range without itself testing whether it holds outside corals."
+    }
+   ],
+   "caveat": "Population-level spatial-structure evidence, not a manipulative/causal experiment — supports epigenetic variation being ecologically meaningful and non-redundant with genetic variation, but does not establish which comes first mechanistically.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "bioRxiv abstract (cross-confirmed via Consensus, all 3 queries)",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Baird_2026_oyster_parental_priming",
+   "doi": "10.64898/2025.12.10.693539",
+   "title": "Parental immune priming reshapes offspring growth, metabolism, and thermal tolerance in the Pacific Oyster",
+   "authors": "Baird, Huffmyer, Ozguner, Roberts",
+   "journal": "bioRxiv (preprint)",
+   "year": 2025,
+   "pub_date": "2025-12-13",
+   "species": "Magallana/Crassostrea gigas (Pacific oyster)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q2",
+     "verdict": "Confirms",
+     "rationale": "Broodstock Poly(I:C) immune challenge produced offspring that were 6.5% larger by 236 dpf and differentially expressed HSP70/HSP90/viperin under acute thermal stress — direct empirical evidence that a parental (somatic, immune) stress experience is transmitted to affect offspring growth, gene expression, and thermal-stress phenotype, the phenomenon Q2 asks about (though the transmission mechanism itself — methylation, provisioning, etc. — is not identified here)."
+    },
+    {
+     "q": "Q8",
+     "verdict": "Confirms",
+     "rationale": "Primed offspring had 35% lower mortality than controls at 40°C but 17% HIGHER mortality at 42°C, with metabolic activity likewise reversing sign between the two temperatures — a direct, quantified demonstration of anticipatory/primed benefit flipping to a cost past a thermal threshold, precisely the mismatch-tipping-point question Q8 asks."
+    }
+   ],
+   "caveat": "IMPORTANT: this is a Roberts Lab (Steven B. Roberts, senior author) preprint — an in-house finding, not independent external validation, same caveat as Durkin_2026 (2026-08-12 sweep). Also note a date artifact: this preprint was first posted 2025-12-13, roughly 9 months before this sweep's window (2026-08-09 to 2026-09-08) — it surfaced via bioRxiv's date+category browse of the physiology category (version/reindex date, not original posting date, apparently drove its appearance in-window), so it is newly-encountered by this log, not a genuinely new-this-week preprint. No methylation/epigenetic mechanism is reported in the abstract — phenotypic/transcriptional evidence only.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "bioRxiv abstract (physiology category browse)",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Wang_2026_abalone_lncRNA_mantle",
+   "doi": "10.1126/sciadv.aeb8392",
+   "title": "Abalone genomics reveals an ancient asymmetry axis and the multifunctionality of the mantle",
+   "authors": "Wang, Li, Xin, Zhang, Huang, Chen, Li, Han, Wei, Zhang, Liu, Zhu, Xu, Yue, Xue, Yu, Zhang, Li, Yuan, Tian, Qi, Qiu, Wang, Guo, Feng",
+   "journal": "Science Advances",
+   "year": 2026,
+   "pub_date": null,
+   "species": "rainbow abalone (Haliotis sp., gastropod)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q5",
+     "verdict": "Confirms",
+     "rationale": "Chromosome-level genome assembly plus chromatin-contact evidence and molecular assays identify a specific long non-coding RNA physically and functionally associated with a neighboring gene driving asymmetric mantle development — a direct, mechanistically-grounded (not purely correlative/proximity-based) validation of a real lncRNA cis-regulatory effect on a neighboring gene in a marine gastropod, the kind of evidence Q5 asks for."
+    }
+   ],
+   "caveat": "The validated lncRNA-gene association concerns a developmental trait (mantle/body-plan asymmetry), not an environmentally-induced memory phenotype — bears on Q5's general mechanism-validation question but doesn't itself speak to environmental memory.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Ashey_2026_coral_ncRNA_characterization",
+   "doi": "10.1093/eep/dvag021",
+   "title": "Characterization of long noncoding RNAs, microRNAs, and piwiRNAs in reef-building corals",
+   "authors": "Ashey, Rodriguez-Casariego, Durkin, Bengtsson, White, Huffmyer, Becker, Eirin-Lopez, Putnam, Roberts",
+   "journal": "Environmental Epigenetics",
+   "year": 2026,
+   "pub_date": "2026-06-19",
+   "species": "three reef-building coral genera, Mo'orea, French Polynesia",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q5",
+     "verdict": "Complicates",
+     "rationale": "First comprehensive ncRNA characterization (lncRNA/miRNA/piRNA) across three coral genera finds conserved ncRNA biogenesis machinery and recurrent proximity of lncRNAs to immune-related genes in every species — but lncRNA sequence conservation across species is under 1%, i.e. the putative regulatory associations are structurally recurrent (same gene neighborhoods/functions targeted) but not sequence-conserved. Complicates a simple 'conserved lncRNA = conserved regulatory effect' reading of Q5: the genomic-context signal generalizes even though the specific ncRNA sequences mostly don't, which is a real nuance for anyone inferring cis-regulatory conservation from sequence homology alone."
+    },
+    {
+     "q": "Q9",
+     "verdict": "Extends",
+     "rationale": "Parallel ncRNA-machinery characterization across three coral genera extends the cross-taxa (within-coral) evidence base for the mechanistic channels, without changing the answer to the generality question itself."
+    }
+   ],
+   "caveat": "IMPORTANT: this is a Roberts Lab paper (Steven B. Roberts co-author; Kathleen Durkin also a co-author). It shares the same coral system (three genera, Mo'orea) and several authors with Durkin_2026 (logged 2026-08-12, title 'Cross-talk among miRNAs, lncRNAs, and DNA methylation in three coral species', DOI still unresolved) — almost certainly a companion or precursor publication from the same project, but NOT confirmed to be the identical manuscript (this one characterizes ncRNA genomic context/targets; the abstract does not mention DNA methylation cross-talk, which was central to Durkin_2026's title). Logged as a distinct entry rather than assumed identical. Characterization/proximity-based inference, not functional knockdown/knockout validation.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Kwong_2026_CoTS_epiclock",
+   "doi": "10.1098/rsbl.2026.0265",
+   "title": "DNA methylation-based ageing in a deuterostome invertebrate: an epigenetic clock for the crown-of-thorns seastar (Acanthaster cf. solaris)",
+   "authors": "Kwong, Budd, Gomez-Cabrera, Hung, Pratchett, Villacorta-Rath, Uthicke",
+   "journal": "Biology Letters",
+   "year": 2026,
+   "pub_date": null,
+   "species": "Acanthaster cf. solaris (crown-of-thorns seastar, echinoderm)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q10",
+     "verdict": "Confirms",
+     "rationale": "Built a DNA-methylation age-prediction model (1910 age-associated CpGs, elastic net regression) and evaluated it with leave-one-out cross-validation, achieving 0.31 ± 0.22 years mean absolute error (4-6% of lifespan). This is direct additional empirical evidence that a molecular (methylation) signature trained on a cohort can achieve strong held-out predictive performance in a marine invertebrate — the type of result the framework currently holds as plausible-but-untested."
+    },
+    {
+     "q": "Q1",
+     "verdict": "Extends",
+     "rationale": "Extends DNA-methylation-based age-association tools beyond arthropods (their only prior invertebrate application) to a deuterostome invertebrate, confirming CpG methylation changes measurably and monotonically enough with age to be predictive — a new-taxon data point consistent with, not a change to, the existing understanding that marks change on a measurable timescale."
+    }
+   ],
+   "caveat": "LOOCV validates within the same set of sampled individuals/age groups, not a fully independent cohort under novel conditions — partial, not complete, evidence for Q10's 'independent cohort, novel conditions' standard.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep",
+   "editorial_status": "unavailable",
+   "evidence_source": "PubMed abstract",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Yuan_2026_sponge_chromatin_priming",
+   "doi": null,
+   "title": "Light-entrained chromatin priming poises rapid metamorphosis in a marine sponge",
+   "authors": "Yuan et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": null,
+   "species": "Amphimedon queenslandica (marine sponge, Porifera)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q1",
+     "verdict": "Confirms",
+     "rationale": "Time-resolved transcriptomic/chromatin-accessibility profiling shows diminishing light at sunset drives extensive chromatin remodelling in swimming larvae well before settlement, establishing an anticipatory, permissive chromatin state that persists until an environmental (coralline-alga) induction cue triggers metamorphosis. Direct evidence that an induced chromatin-level state is established, persists over a defined window, and remains functionally poised — bears directly on Q1's persistence-of-marks question, in a new taxon (sponge) and via a chromatin- rather than DNA-methylation-based channel."
+    },
+    {
+     "q": "Q8",
+     "verdict": "Extends",
+     "rationale": "Larvae denied the light cue (constant light) fail to settle and instead adopt an alternative, non-adaptive chromatin/transcriptional trajectory — a demonstration of what happens when an anticipatory cue is absent/mismatched, extending the anticipatory-memory-tipping-point concept in Q8 to a light-entrainment system in a new taxon without changing the answer to the question."
+    }
+   ],
+   "caveat": "DOI could not be resolved this sweep — surfaced via Consensus with no DOI in the result and no exact title match on PubMed or a direct bioRxiv lookup. Porifera (sponges) are not named among RUBRIC's example taxa but are treated as in-scope marine invertebrates. Preprint, not yet peer reviewed; mechanism shown is chromatin accessibility, not DNA methylation.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep; DOI unresolved so a Scite DOI lookup was not even possible — resolve DOI before citing.",
+   "editorial_status": "unavailable",
+   "evidence_source": "Consensus abstract (bioRxiv)",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "GonzalezRajal_2026_siphonophore_methylation_static",
+   "doi": null,
+   "title": "Integrative genomics of the siphonophore Physalia utriculus reveals the regulatory logic of colonial division of labour and the molecular basis of venom activity",
+   "authors": "González-Rajal et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": null,
+   "species": "Physalia utriculus (siphonophore, cnidarian)",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q6",
+     "verdict": "Complicates",
+     "rationale": "A multi-omic atlas (genome, transcriptome, chromatin accessibility, DNA methylation) across zooid types finds that zooid-identity differences are associated with distinct chromatin-accessibility landscapes, while DNA methylation is 'comparatively static' and linked instead to gene architecture. Direct evidence in a marine cnidarian that DNA methylation and chromatin-accessibility channels are NOT redundant or interchangeable — here methylation is the stable, non-dynamic channel while chromatin accessibility carries the identity-determining signal, complicating any assumption that methylation is the (or a) primary dynamic memory channel; consistent instead with a hierarchical or channel-specific-role picture."
+    }
+   ],
+   "caveat": "DOI could not be resolved this sweep — surfaced via Consensus with no DOI in the result and no exact title match on PubMed. Result concerns colonial division-of-labour/zooid specialization, not an environmentally-induced memory phenotype — relevant to Q6's channel-relationship question via a developmental-identity system rather than a stress/environmental-memory one.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep; DOI unresolved so a Scite DOI lookup was not even possible — resolve DOI before citing.",
+   "editorial_status": "unavailable",
+   "evidence_source": "Consensus abstract (bioRxiv)",
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Durkin_2026_update_20260908",
+   "supersedes": "Durkin_2026",
+   "doi": null,
+   "title": "Cross-talk among miRNAs, lncRNAs, and DNA methylation in three coral species reveal conserved epigenetic architecture [SECOND RECHECK — DOI still unresolved]",
+   "authors": "Durkin et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": null,
+   "species": "three coral species",
+   "cross_domain": false,
+   "questions": [
+    {
+     "q": "Q6",
+     "verdict": "Confirms",
+     "rationale": "[Carried forward, not re-scored — see original Durkin_2026 entry, 2026-08-12, for full rationale.]"
+    },
+    {
+     "q": "Q5",
+     "verdict": "Complicates",
+     "rationale": "[Carried forward, not re-scored — see original Durkin_2026 entry, 2026-08-12, for full rationale.]"
+    },
+    {
+     "q": "Q9",
+     "verdict": "Complicates",
+     "rationale": "[Carried forward, not re-scored — see original Durkin_2026 entry, 2026-08-12, for full rationale.]"
+    }
+   ],
+   "caveat": "ANNOTATED UPDATE, not a re-score: DOI search reattempted this sweep (PubMed title search, bioRxiv published-preprints lookup) — still unresolved. A related/possibly-companion paper from the same coral system and overlapping author list (Ashey_2026_coral_ncRNA_characterization, DOI 10.1093/eep/dvag021, published 2026-06-19) was found this sweep and logged as a SEPARATE entry rather than assumed to be the same manuscript, since its abstract does not mention DNA methylation cross-talk. Recommend manual (non-MCP) resolution of Durkin_2026's own DOI if this matters for an upcoming manuscript/grant.",
+   "editorial_notice": "Not checked — Scite unavailable this sweep; DOI still unresolved",
+   "editorial_status": "unavailable",
+   "evidence_source": "carried forward from 2026-08-12 sweep",
+   "sweep_date": "2026-09-08"
+  }
+ ],
+ "method_watch": [
+  {
+   "id": "Lin_2026_methodwatch",
+   "doi": "10.1016/j.cels.2026.101621",
+   "title": "Widespread transcriptional memory shapes heritable states and functional heterogeneity in cancer and stem cells",
+   "authors": "Lin, Chen, Wu, Zhou, Lin",
+   "journal": "Cell Systems",
+   "year": 2026,
+   "pub_date": "2026-06-04",
+   "relevance": "Lineage-resolved single-cell transcriptomics distinguishing heritable cell states that persist across mitotic divisions from transient fluctuations, in human cancer/stem cell lines. Relevant as a METHOD, not as marine data: the same lineage-tracing logic could in principle identify which mitotically-transmitted expression states in a coral or oyster cell lineage are 'memory' versus noise — directly useful for attacking Q3 (causal direction) and Q6 (channel integration) if adapted to a marine system with trackable cell lineages.",
+   "cross_domain": true,
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Takei_2026_methodwatch",
+   "doi": "10.1101/2025.08.05.668773",
+   "title": "Genome-wide chromatin recording resolves dynamic cell state changes",
+   "authors": "Takei, Lay, Linton et al.",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2025-08-05 (original); v3 posted 2026-07-19 — surfaced by the revision, NOT new",
+   "relevance": "Most chromatin profiling is an endpoint assay, which is the core practical reason Q1 (persistence and decay of marks) is hard to attack: you cannot watch a mark decay, you can only sample it twice and infer. A genome-wide chromatin RECORDING method writes chromatin history into a readable substrate, turning persistence into something measurable within a single lineage rather than inferred across cohorts. If it can be ported to a marine invertebrate system it is the most direct available attack on Q1, and it would also address the bulk-versus-single-cell confound that Grau-Bove et al. raise for Q3 this sweep. DATE FLAG: this is v3 of an August 2025 preprint; it entered this sweep only because the revision was posted inside the window. Do not report as new.",
+   "cross_domain": true,
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "GutierrezRodriguez_2026_methodwatch",
+   "doi": null,
+   "title": "Two Decades of DNA Methylation Shifts Reveal Epigenomic Responses to Environmental Change in Wild Salmo salar From Its Southernmost Populations",
+   "authors": "Gutierrez-Rodriguez et al.",
+   "journal": "Molecular Ecology",
+   "year": 2026,
+   "pub_date": "2026",
+   "relevance": "A study DESIGN worth stealing, not a result to cite. RRBS on archived fin tissue sampled at three timepoints across two decades (early 2000s, early 2010s, early 2020s) from two river systems, analysing 715,240 common CpGs in 120 wild adults. This is a decadal-scale natural experiment on Q1 — whether environmentally induced methylation states persist, decay, or accumulate in a WILD population over real climate change, rather than over a handful of lab generations. Marine invertebrate equivalents exist wherever archived shell, tissue, or settlement-plate material has been banked. CROSS-DOMAIN: Atlantic salmon is a vertebrate and outside the framework's taxonomic scope; logged here for the sampling design only, and deliberately not scored as evidence. The authors themselves note the design cannot establish causality without controlled experiments — which is Q3 restated.",
+   "cross_domain": true,
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Pichon_2026_methodwatch",
+   "doi": "10.1371/journal.ppat.1014471",
+   "title": "Epigenetic and metabolic reprogramming of innate immune cells establishes immunological memory in the Schistosomiasis vector snail Biomphalaria glabrata",
+   "authors": "Pichon, Pinaud, Chaparro, Fallet, Lebron, Allienne, Turtoi E., Grunau, Turtoi A., Duval, Galinier, Cosseau, Gourbal",
+   "journal": "PLoS Pathogens",
+   "year": 2026,
+   "pub_date": "2026-08-05",
+   "relevance": "Direct multi-omics test (whole-genome bisulfite sequencing + chromatin accessibility + transcriptomics + metabolomics, same samples/timepoints) of the exact persistence-then-causation sequence Q1 and Q3 both want tested: in B. glabrata hemocytes, a first parasite encounter induces a stable rewiring of chromatin landscape and metabolism (a Warburg-like glycolytic shift) that remains STABLE through to a second exposure, priming a faster/larger transcriptional response on re-exposure. The epigenetic state persists and causally precedes the phenotypic outcome later associated with it. The multi-omics design is a template directly portable to a marine bivalve or coral trained-immunity / environmental-priming experiment. CROSS-DOMAIN: Biomphalaria glabrata is a freshwater gastropod (schistosomiasis vector), outside the framework's marine/estuarine taxonomic scope — logged here for the mechanism and method, not scored as marine-invertebrate evidence.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "Zicola_2026_methodwatch",
+   "doi": "10.1038/s41477-026-02352-2",
+   "title": "A VIM2/4 deletion, and premature truncations of CMT2 and FBX5, drive DNA methylation changes after colonization of a novel habitat",
+   "authors": "Zicola, Tergemina, Elfarargi, Göktay, Neto, Schmitz, Hancock",
+   "journal": "Nature Plants",
+   "year": 2026,
+   "pub_date": "2026-08-03",
+   "relevance": "A causal test of what drives methylome change after colonizing a novel habitat (Arabidopsis colonizing the drought-prone Cape Verde Islands): identifies three specific high-impact gene variants (a VIM2/4 deletion, CMT2 and FBX5 truncations) and VALIDATES the FBX5 methylation-modulator role with CRISPR mutants, rather than stopping at correlation. This is the causal-perturbation standard Q3 (causal direction between methylation, transcription, phenotype) needs and rarely gets in marine invertebrate work, in a mismatch/novel-habitat-colonization scenario structurally similar to Q8. Directly portable template: find candidate methylation-machinery variants segregating between a stressed/novel-habitat population and an ancestral one, then CRISPR-validate. CROSS-DOMAIN: Arabidopsis thaliana is a plant, outside the framework's taxonomic scope; logged for the causal-perturbation method only.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "Gralak_2026_methodwatch",
+   "doi": "10.1038/s41467-026-71387-y",
+   "title": "Identification of methylation-sensitive human transcription factors using meSMiLE-seq",
+   "authors": "Gralak, Faltejskova, Yang, Steiner, Russeil, Grenningloh, Inukai, Demir, Dainese, Owen, Pankevich, Hughes, Kulakovskiy, Kribelbauer-Swietek, van Mierlo, Deplancke",
+   "journal": "Nature Communications",
+   "year": 2026,
+   "pub_date": "2026-08-05",
+   "relevance": "A microfluidic assay (meSMiLE-seq) that directly and quantitatively measures whether a transcription factor's DNA binding is methylation-sensitive, applied at scale (114 human TFs, 48 with resolved binding models, 11 preferring methylated DNA, 13 averse to it). A mechanistic, scalable, in-vitro method for testing exactly the causal link Q3 needs — whether methylation state at a locus can directly gate transcription factor binding — rather than inferring it from correlation across bulk tissue. NOTE: originally posted as a bioRxiv preprint in Nov 2024; this is the formal Nature Communications publication (2026-08-05), not new unpublished work — flagged so it isn't misread as a brand-new finding. CROSS-DOMAIN: human transcription factors, outside taxonomic scope; logged for the assay method only.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-01"
+  },
+  {
+   "id": "HernandezElizarraga_2026_zebra_mussel_ncRNA",
+   "doi": "10.64898/2026.07.10.737777",
+   "title": "Characterizing the Small Non-Coding RNA Pathways in the Invasive Zebra Mussel (Dreissena polymorpha)",
+   "authors": "Hernandez Elizarraga, O'Brien, Ballantyne, Gohl",
+   "journal": "bioRxiv (preprint)",
+   "year": 2026,
+   "pub_date": "2026-07-11",
+   "relevance": "Characterizes endogenous miRNA/piRNA machinery in a bivalve mollusk (zebra mussel) and demonstrates that injected dsRNA can trigger a functional RNAi-like response via these pathways despite a degenerate canonical siRNA pathway (modified Dicer, missing R2D2). A directly transferable toolkit/method for Q5's ncRNA functional-validation question in the lab's own marine bivalve systems (oyster, etc.), even though the zebra mussel itself is a freshwater, not marine/estuarine, species.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Johnson_2026_epigenetic_age_MetS_methodwatch",
+   "doi": "10.1038/s41366-026-02187-z",
+   "title": "Epigenetic age acceleration and metabolic syndrome among Hispanic/Latino adults: Hispanic Community Health Study/Study of Latinos (HCHS/SOL)",
+   "authors": "Johnson, Gonzalez-Mejia, Aqua, Pritchard, Kaplan, Cai, Isasi, Perreira, Cordero, Gallo, Parada, Conneely, Suglia",
+   "journal": "International Journal of Obesity",
+   "year": 2026,
+   "pub_date": null,
+   "relevance": "Large (n=962) prospective human cohort study measuring DNA methylation at two time points six years apart, using three published epigenetic-age/pace-of-aging algorithms (PhenoAge, GrimAge, DunedinPACE) to test whether a baseline epigenetic biomarker predicts a future health outcome (incident metabolic syndrome) in the same individuals over time. A methodologically transferable template for how the lab might validate a molecular signature's genuinely held-out, prospective predictive performance (Q10) or study rate-of-epigenetic-change over time (Q1) — human, vertebrate, out of taxonomic scope but the prospective-validation design is the relevant transferable piece.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Yakovlev_2026_spruce_methylation_methodwatch",
+   "doi": "10.1007/s00425-026-05116-6",
+   "title": "Stable and temporally shifted DNA methylation differences between 14-year-old Norway spruce epitypes under common garden conditions",
+   "authors": "Yakovlev, Viejo, Tengs, Olsen, Fossdal",
+   "journal": "Planta",
+   "year": 2026,
+   "pub_date": "2026-08-07",
+   "relevance": "In clonal Norway spruce, warmer- vs cooler-embryogenesis conditions induce a stable 'climatic memory' — differential DNA methylation and altered bud-phenology timing that persists for at least 14 years under common-garden conditions, with evidence of embryo-to-adult transmission of specific methylation marks in a handful of genes (including two ARGONAUTE genes). Directly relevant methodologically and conceptually to Q1 (persistence/decay of induced marks, here tracked for over a decade) and Q2/Q4 (embryo-to-adult transmission of an environmentally-induced state) — plant, out of taxonomic scope, but one of the cleanest long-term persistence datasets found this sweep in any taxon.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-08"
+  },
+  {
+   "id": "Peer_2026_plant_epigenome_bioenergetics_methodwatch",
+   "doi": "10.1111/pce.70821",
+   "title": "The Bioenergetic Constraints of the Plant Epigenome: A Framework for Understanding the Metabolic Cost of Environmental Memory",
+   "authors": "Peer",
+   "journal": "Plant, Cell & Environment",
+   "year": 2026,
+   "pub_date": "2026-08-13",
+   "relevance": "A conceptual review proposing that maintaining a stress-responsive epigenome carries a measurable metabolic 'yield penalty' (ATP burden of chromatin remodeling, substrate-level gating by metabolites like SAM/acetyl-CoA/alpha-ketoglutarate, redox gating of demethylases). Directly relevant conceptual framing for Q7 (energetic cost of plasticity) — explicitly NOT experimentally validated even in plants (drawn mostly from yeast), so this is a hypothesis-generating framework to borrow from, not an empirical result to cite as evidence. Plant, out of taxonomic scope.",
+   "cross_domain": true,
+   "sweep_date": "2026-09-08"
+  }
+ ],
+ "insufficient_info": [
+  {
+   "id": "Madin_2026_watch",
+   "title": "Demographic insights for coral restoration",
+   "authors": "Madin et al.",
+   "journal": "bioRxiv (preprint)",
+   "pub_date": "2026 (exact date not captured)",
+   "reason": "Surfaced by Consensus with title only, no abstract text returned. Directly on-topic (coral restoration demography, Section 6 of the framework) but cannot be scored without the abstract or full text.",
+   "action": "Re-fetch via bioRxiv get_preprint or PubMed next sweep once a DOI is captured.",
+   "sweep_date": "2026-08-05"
+  },
+  {
+   "id": "Madin_2026_recheck",
+   "supersedes": "Madin_2026_watch",
+   "title": "Demographic insights for coral restoration [RECHECK of the 2026-08-05 insufficient-info item]",
+   "authors": "Madin et al.",
+   "journal": "bioRxiv (preprint)",
+   "pub_date": "2026 (exact date still not captured)",
+   "reason": "Re-surfaced by Consensus in this sweep, again with title only and no abstract text, and still with no DOI attached. It now shows 1 citation. The 2026-08-05 action item — re-fetch via bioRxiv get_preprint or PubMed once a DOI is captured — could not be executed because no DOI was ever obtained, and the bioRxiv MCP tool offers no keyword or title search to find one.",
+   "action": "Stop waiting on Consensus for this. Next sweep, resolve the DOI by a Scite title search (the DOI-lookup path is reliable; term/title search was 502-ing this week) or by a manual bioRxiv site search, then fetch the abstract and either score or formally screen it out. Two sweeps carrying an unscoreable title is one too many.",
+   "sweep_date": "2026-08-12"
+  },
+  {
+   "id": "Madin_2026_recheck2",
+   "supersedes": "Madin_2026_recheck",
+   "title": "Demographic insights for coral restoration [THIRD SWEEP — still unresolved]",
+   "authors": "Madin et al.",
+   "journal": "bioRxiv (preprint)",
+   "pub_date": "2026 (exact date still not captured)",
+   "reason": "Third consecutive sweep carrying this title-only, DOI-less item, though it did not resurface via Consensus this week (this sweep's 3 fixed queries differ from whatever surfaced it originally). A targeted PubMed title search this sweep returned zero hits (not indexed in PubMed). The planned fallback — a Scite title search — could not be attempted: the Scite MCP server is unavailable this sweep (needs re-authorization). bioRxiv's own search API still has no keyword/title search to find it directly.",
+   "action": "Once Scite access is restored, try a Scite title search first. If that also fails, this needs a manual (non-MCP) bioRxiv site search or similar human lookup — three sweeps carrying an unscoreable title with no automated path forward is the threshold past which this should probably just be resolved by hand rather than carried again.",
+   "sweep_date": "2026-09-01"
+  }
+ ]
+}
