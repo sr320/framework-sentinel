@@ -270,9 +270,13 @@ No sweep this entry — a review of the repository itself, and the fixes it turn
   cards already escaped theirs), the injected JSON is guarded against a `</script>`
   sequence, and re-check cards are labelled *re-check · not a new finding*.
 - `scripts/verify.js` no longer hardcodes a container-only Chromium path; set
-  `PW_CHROMIUM` to override. Playwright isn't installed on the machine this audit
-  ran on, so the rebuilt page was verified in a browser instead: 10 question cards,
-  42 hit cards (4 tagged as re-checks), 10 method-watch, 1 insufficient-info card,
-  no console errors.
+  `PW_CHROMIUM` to override. Playwright was installed and the check run in full:
+  10 question cards, 42 hit cards (4 tagged as re-checks), 10 method-watch cards,
+  1 insufficient-info card, light + dark, no console or page errors, and no
+  horizontal overflow at desktop or at a 390px mobile viewport.
+- Deployed: GitHub Pages enabled (source: GitHub Actions) and the live site at
+  https://sr320.github.io/framework-sentinel/ verified to serve the corrected
+  figures — 26 papers / 28 records, editorial gap 12 of 26, one
+  insufficient-info card.
 - Unchanged: no scoring verdict, rationale, or caveat was edited, and no record was
   removed. All schema changes are additive.
