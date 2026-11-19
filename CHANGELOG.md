@@ -280,3 +280,75 @@ No sweep this entry — a review of the repository itself, and the fixes it turn
   insufficient-info card.
 - Unchanged: no scoring verdict, rationale, or caveat was edited, and no record was
   removed. All schema changes are additive.
+
+## 2026-11-19 — Weekly sweep (window 2026-10-20 to 2026-11-19)
+
+- **Coverage gap: first sweep in ten weeks.** The previous sweep was
+  2026-09-08, so 2026-09-09 to 2026-10-19 was never swept. Papers from that
+  six-week stretch are missing from the log (two relevant ones turned up this
+  week and were left out under the border rule: a coral single-cell/bulk
+  deconvolution workflow and a butterfly canalization paper). A one-off
+  catch-up sweep over that window is recommended.
+- **Editorial-check backlog cleared. No retractions, corrections or
+  expressions of concern found.** Scite was reachable for the first time
+  since 2026-08-12. All 12 records still at `editorial_status: "unavailable"`
+  were checked and resolved with new `supersedes` records (Zhou, Zhao, Ai,
+  Vaidya, Buso, Baird, Wang, Ashey coral ncRNA, Kwong, Yuan, Gonzalez-Rajal,
+  Durkin). Originals untouched. Thyrring (already resolved 2026-08-12) was
+  correctly skipped. The dashboard's editorial-check gap is now 0.
+- **Three long-missing DOIs resolved** by Scite `verify_papers` reference
+  matching, which worked where title search had failed:
+  - Durkin_2026 → 10.64898/2026.07.19.739451. Confirmed as the lab's own
+    preprint (Roberts last author). Closes three sweeps of "DOI unresolved".
+  - Yuan_2026 → 10.7554/elife.111060.1, an eLife reviewed preprint dated
+    2026-05-11. It had been a resurfacing, not a new paper.
+  - Gonzalez-Rajal_2026 → 10.64898/2026.08.01.742136.
+- **Madin et al. insufficient-info item closed** after three sweeps: DOI
+  10.1101/2025.10.21.683544, posted 2025-10-22 (a Consensus resurfacing).
+  It is coral restoration demography with no epigenetic content, so it was
+  screened out as Irrelevant.
+- **1,584 records screened, 9 papers scored, 9 method-watch, 0 insufficient-info.**
+  Questions touched: Q1, Q2, Q3, Q5, Q6, Q9, Q10.
+  - **Q10, two Complicates, its first hits since 2026-09-08.** Shi et al.
+    (Pacific white shrimp) is the closest thing yet to a held-out test.
+    Epigenome-guided SNPs improved prediction in an independent strain, but
+    the predictor is genotype, not epigenetic state, and accuracy stays at
+    0.31. Song et al. (Mercenaria, PLoS Biology) found that larval and
+    juvenile tolerance to acidification are negatively genetically
+    correlated (r = -0.53). A predictor validated at one life stage can
+    therefore get the sign wrong at another.
+  - **Q9, three hits in different directions.** Popp et al. (estuarine
+    copepod) and Scucchia et al. (three Hawaiian corals) Extend the
+    constitutive-versus-plastic trade-off. Parker et al. (*Porites
+    astreoides*) Complicates it: the tolerant population has a muted, fast-
+    recovering response and explicitly no frontloading.
+  - **Q2:** Ashey et al. (preprint) gives the first marine-invertebrate sperm
+    small-RNA cargo: miRNAs, piRNAs and tDRs in an anemone and two corals.
+    Confirms the carrier exists, not that it functions. The first author is a
+    close lab collaborator; Roberts is not an author.
+  - **Q5:** Zhang et al. knocked down a pearl oyster lncRNA, but it acts in
+    trans from the cytoplasm (Complicates the cis framing).
+  - **Q3:** Huang et al. (Manila clam promoter methylation, Complicates);
+    Yang et al. (annelid Jmjd6 inhibitor → transcription → antioxidant
+    phenotype, Confirms). Yang also Extends Q1.
+  - **Q6:** Scucchia et al. Complicates it. Isoform switching is a stress-
+    regulatory layer that the methylation-versus-ncRNA framing does not cover.
+  - Verdicts on new papers: 2 Confirms, 6 Complicates, 3 Extends.
+- **Quiet questions.** Q4 has had zero hits in all five sweeps. Q7 has had
+  no new paper since 2026-08-12 (99 days, past the 90-day mark). Q8 had no
+  hit this sweep.
+- **Sources:**
+  - **bioRxiv coverage was complete for the first time**: 7 categories paged
+    to the end of the window, 1,510 records, no timeouts. `zoology` was
+    trialled and yielded nothing.
+  - PubMed: the dropped wildcard term was folded back in as `"predictive
+    phenotype" OR "predictive phenotypes"`.
+  - The PubMed print-issue quirk recurred (Zhu et al. *Mytilus* RNA
+    editing, 2026-03 paper listed in a November 2026 issue).
+  - The Consensus revision-date artifact recurred twice and was caught on
+    citation count.
+- **14-day border rule adopted** and applied for the first time. Four
+  method-watch items (Proulx, Sork, CnidoSite, Lozano-Enguita) were kept
+  under it.
+- Render check run: 10 question cards, 72 hit cards, 19 method-watch cards,
+  light, dark and 390 px mobile, no errors or overflow.

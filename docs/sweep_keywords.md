@@ -83,3 +83,52 @@ or the notice type, before the paper is added.
   same border case and no rule. Proposed rule for next week: keep any hit whose
   publication date falls within 14 days before the window start, note it, and do not
   re-score it if it resurfaces in a later window.
+- 2026-11-19: PubMed operator cap resolved for good. Run these two queries
+  (16 operators each), which also fold the dropped wildcard back in:
+  (A) `(<taxa>) AND (methylation OR epigenetic OR "gene body methylation" OR
+  transgenerational OR "reaction norm" OR lncRNA OR ncRNA)`.
+  (B) `(<taxa>) AND ("non-coding RNA" OR "predictive phenotype" OR
+  "predictive phenotypes" OR "environmental memory" OR frontloading OR
+  preconditioning OR "transgenerational plasticity")`.
+  `<taxa>` is the 10-term taxon clause above. This week (B) returned only
+  duplicates of (A), so it is cheap insurance.
+  The taxon terms also catch "coral" outside biology: coral-like nanoplates,
+  the CORAL spatial-omics model, a coral-inspired aerogel. Expect 4-5 such
+  off-topic hits a month. Screening by title is enough.
+- 2026-11-19: **bioRxiv full coverage is feasible.** The cursor does advance in
+  steps of 30, even though every response echoes `"cursor":0, "total":0`.
+  Page each category until a page returns fewer than 30 records. A 30-day
+  window took 53 calls across 7 categories (genomics 11, molecular biology
+  10, evolutionary biology 10, ecology 10, genetics 6, physiology 5, zoology
+  1). Delegating that paging to a subagent keeps the main context small.
+  - `zoology` added almost nothing (25 records a month, no keyword hits).
+    Optional.
+  - A new version of an older preprint shows up as a fresh listing, so check
+    the DOI date stem. 7 of this week's keyword hits were revised versions.
+  - `get_preprint` returns v1 metadata and sometimes the v1 title.
+  - Keyword misses worth adding to the filter list: `cnidaria, porifera,
+    barnacle, chiton, cockle, snail, crab, nudibranch, octopus, tubeworm,
+    shellfish, epimutation`. Note that "cnidarian" does not match "Cnidaria".
+- 2026-11-19: **Scite `verify_papers` with `references` resolves missing
+  DOIs.** Pass the reference as written (authors, year, title, venue). It
+  resolved 5 of 6 DOIs in one call: Durkin, Yuan, Gonzalez-Rajal, Madin, and
+  a Consensus-only shrimp paper. Title-based `search_literature` had failed
+  on all of these for weeks. Use it first for any Consensus-only hit, since
+  Consensus cards carry no DOI. For the one it missed (a Chinese-language
+  journal title), a short PubMed keyword search found the DOI.
+  - `search_literature` with `dois` and `verify_papers` with `dois` agree on
+    editorial notices.
+  - `search_literature` also surfaces a "new version" record (seen on a PLoS
+    Biology paper). `verify_papers` does not count that as an editorial
+    notice. Record it in the prose, not as a correction.
+- 2026-11-19: **14-day border rule ADOPTED.** Keep any hit dated up to 14
+  days before the window start, note it in the record, and never re-score it
+  in a later window.
+  - It does not rescue papers lost to a skipped week. This sweep followed a
+    ten-week gap, and items from 15+ days before the window were left out
+    and named in the sweep notes.
+  - If a run is skipped, run a catch-up sweep over the missed window. Do not
+    stretch the border.
+- 2026-11-19: Render check: Playwright's bundled Chromium is now at
+  `/opt/pw-browsers/chromium-1243/chrome-linux64/chrome`, not `chrome-linux`.
+  `verify.js` also ran fine with `PW_CHROMIUM` unset.
